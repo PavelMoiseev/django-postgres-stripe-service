@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+  <head>
+    <link rel="icon" href="data:;base64,=">
+    <title>Buy item</title>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="{% static 'order.js' %}"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
+  </head>
+  <body>
+    <h1>Список выбранных товаров</h1>
+    <p>--------------------------------------------------</p>
+    {% for item in order %}
+      <p>Наименование: {{ item.name }}</p>
+      <p>Количество: {{ item.quantity }}</p>
+      <p>--------------------------------------------------</p>
+    {% endfor %}
+    <p> Налогооблажение: {{ tax_rate_value }} %</p>
+    <p> Скидка на весь заказ: {{ order.0.discount }} %</p>
+    <section class="section">
+      <div class="container">
+        <button class="button is-primary" id="submitBtn">Buy</button>
+      </div>
+    </section>
+  </body>
+</html>
